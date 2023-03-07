@@ -10,6 +10,7 @@ instance View WelcomeView where
                   <h1 class="bg-green-300 border-none hover:border-solid border-2 border-sky-500">
                       IHP
                   </h1>
+                  {loginButton}
 
                   <h2 style="margin-top: 0; margin-bottom: 0rem; font-weight: 900; font-size: 3rem">
                       It's working!
@@ -39,4 +40,7 @@ instance View WelcomeView where
                  You can modify this start page by making changes to "./Web/View/Static/Welcome.hs".
               </p>
          </div> 
-|]
+|] where loginButton = case currentUserOrNothing of
+                    Just user -> [hsx| <a class="js-delete" href={DeleteSessionAction}>Log out</a>|]
+                    Nothing -> [hsx| <a href={NewSessionAction}>Log in</a>
+                                    <a href={NewUserAction}>Sign up</a>|]
