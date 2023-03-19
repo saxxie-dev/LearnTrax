@@ -30,3 +30,13 @@ data UsersController
     | UpdateUserAction { userId :: !(Id User) }
     | DeleteUserAction { userId :: !(Id User) }
     deriving (Eq, Show, Data)
+
+data TracksController
+    = TracksAction
+    | NewTrackAction
+    | ShowTrackAction { trackId :: !(Id Track) }
+    | CreateTrackAction
+    | EditTrackAction { trackId :: !(Id Track) }
+    | UpdateTrackAction { trackId :: !(Id Track) }
+    | DeleteTrackAction { trackId :: !(Id Track) }
+    deriving (Eq, Show, Data)
