@@ -33,4 +33,4 @@ node_modules:
     NODE_ENV=production npm ci
 
 static/app.css:
-	NODE_ENV=production node_modules/.bin/tailwind -c tailwind/tailwind.config.js -i ./tailwind/app.css -o static/app.css --minify
+    NODE_ENV=production node_modules/.bin/tailwind -c tailwind/tailwind.config.js -i ./tailwind/app.css -o static/app.css --minify
