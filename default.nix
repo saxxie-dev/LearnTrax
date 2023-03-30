@@ -18,6 +18,7 @@ let
             nodejs
         ];
         projectPath = ./.;
+        withHoogle = true;
     };
 in
     haskellEnv

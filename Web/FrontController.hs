@@ -14,6 +14,7 @@ import Web.Controller.Sessions
 instance FrontController WebApplication where
     controllers =
         [ startPage WelcomeAction
+        , parseRoute @StaticController
         , parseRoute @SessionsController
         -- Generator Marker
         , parseRoute @TracksController

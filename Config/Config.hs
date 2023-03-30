@@ -9,4 +9,4 @@ config :: ConfigBuilder
 config = do
     option Development
     option (AppHostname "localhost")
-    option customTailwind -- ADD THIS OPTION
+    option customTailwind

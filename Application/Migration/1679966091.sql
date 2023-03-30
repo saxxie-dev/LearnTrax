@@ -1,0 +1,1 @@
+ALTER TABLE tracks ALTER COLUMN segment_count SET DEFAULT 1;

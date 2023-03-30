@@ -5,43 +5,22 @@ data WelcomeView = WelcomeView
 
 instance View WelcomeView where
     html WelcomeView = [hsx|
-         <div style="background-color: #657b83; padding: 2rem; color:hsla(196, 13%, 96%, 1); border-radius: 4px">
-              <div style="max-width: 800px; margin-left: auto; margin-right: auto">
-                  <h1 class="bg-green-300 border-none hover:border-solid border-2 border-sky-500">
-                      IHP
-                  </h1>
-                  {loginButton}
+        <div class="bg-teal-700 drop-shadow-xl">
+            <h1 class="my-12 mx-auto text-center" style="font-weight: 900; font-size: 3rem">
+                    Track your learning, in <i>style</i>
+            </h1>
+        </div>
+        <div class="grow text-center">
+            {contextualButtons}
+        </div>
 
-                  <h2 style="margin-top: 0; margin-bottom: 0rem; font-weight: 900; font-size: 3rem">
-                      It's working!
-                  </h2>
+        <footer class="text-center text-sm text-slate-400 dark:text-slate-600 py-2">
+            © 2023 <a class="hover:underline" href="https://saxxie.dev">saxxie.dev</a>
+        </footer>
 
-                  <p style="margin-top: 1rem; font-size: 1.75rem; font-weight: 600; color:hsla(196, 13%, 80%, 1)">
-                     Your new application is up and running.
-                  </p>
-
-                  <p>
-                      <a
-                          href="https://ihp.digitallyinduced.com/Slack"
-                          style="margin-top: 2rem; background-color: #268bd2; padding: 1rem; border-radius: 3px; color: hsla(205, 69%, 98%, 1); text-decoration: none; font-weight: bold; display: inline-block; box-shadow: 0 4px 6px hsla(205, 69%, 0%, 0.08); transition: box-shadow 0.2s; transition: transform 0.2s;"
-                          target="_blank"
-                      >Join our community on Slack!</a>
-                  </p>
-
-                  <a href="https://ihp.digitallyinduced.com/Guide/your-first-project.html" style="margin-top: 2rem; background-color: #268bd2; padding: 1rem; border-radius: 3px; color: hsla(205, 69%, 98%, 1); text-decoration: none; font-weight: bold; display: inline-block; box-shadow: 0 4px 6px hsla(205, 69%, 0%, 0.08);  transition: box-shadow 0.2s; transition: transform 0.2s;" target="_blank">
-                     Learn the Next Steps in the Documentation
-                  </a>
-              </div>
-         </div>
-
-         <div style="max-width: 800px; margin-left: auto; margin-right: auto; margin-top: 4rem">
-              <img src="/ihp-welcome-icon.svg" alt="/ihp-welcome-icon" style="width:100%;">
-              <p style="color: hsla(196, 13%, 50%, 1); margin-top: 4rem">
-                 You can modify this start page by making changes to "./Web/View/Static/Welcome.hs".
-              </p>
-              <a href={TracksAction}>trax</a>
-         </div> 
-|] where loginButton = case currentUserOrNothing of
-                    Just user -> [hsx| <a class="js-delete" href={DeleteSessionAction}>Log out</a>|]
-                    Nothing -> [hsx| <a href={NewSessionAction}>Log in</a>
-                                    <a href={NewUserAction}>Sign up</a>|]
+|] where contextualButtons = case currentUserOrNothing of
+                    Just user -> [hsx|<div class="mt-20"><a class=" px-6 py-3 border bg-teal-700 font-bold hover:bg-teal-600 border-teal-600 rounded-lg mx-4 " href={MyTracksAction}>See my tracks</a></div>|]
+                    Nothing -> [hsx|<div class="m-auto mt-12">
+                                <a class="px-6 py-3 border bg-teal-700 border-teal-600 rounded-lg mx-4 hover:bg-teal-600" href={NewSessionAction}>Log in</a>
+                                <a class="px-6 py-3 border border-teal-700 rounded-lg mx-4 hover:bg-slate-200 hover:dark:bg-slate-700" href={NewUserAction}>Sign up</a>
+                            </div>|]

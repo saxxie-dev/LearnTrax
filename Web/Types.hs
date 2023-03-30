@@ -22,20 +22,17 @@ data SessionsController
     deriving (Eq, Show, Data)
 
 data UsersController
-    = UsersAction
-    | NewUserAction
-    | ShowUserAction { userId :: !(Id User) }
+    = NewUserAction
     | CreateUserAction
-    | EditUserAction { userId :: !(Id User) }
-    | UpdateUserAction { userId :: !(Id User) }
     | DeleteUserAction { userId :: !(Id User) }
     deriving (Eq, Show, Data)
 
 data TracksController
-    = TracksAction
+    = MyTracksAction
+    | TracksAction { userId :: !(Id User) }
     | NewTrackAction
-    | ShowTrackAction { trackId :: !(Id Track) }
     | CreateTrackAction
+    | ProgressTrackAction { trackId :: !(Id Track), num :: Int}
     | EditTrackAction { trackId :: !(Id Track) }
     | UpdateTrackAction { trackId :: !(Id Track) }
     | DeleteTrackAction { trackId :: !(Id Track) }

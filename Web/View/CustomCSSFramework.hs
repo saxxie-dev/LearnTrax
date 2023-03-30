@@ -86,7 +86,7 @@ customTailwind = def
                                 {theInput}
                                 <div class="flex flex-col">
                                     <label
-                                        class={classes ["font-medium text-gray-700", ("form-check-label", labelClass == ""), (labelClass, labelClass /= "")]}
+                                        class={classes ["font-medium text-slate-700 dark:text-slate-200", ("form-check-label", labelClass == ""), (labelClass, labelClass /= "")]}
                                         for={fieldInputId}
                                     >
                                         {fieldLabel}
@@ -119,7 +119,7 @@ customTailwind = def
                 {helpText}
             |]
             where
-                twLabelClass = "font-medium text-gray-700" <> " " <> labelClass
+                twLabelClass = "font-medium text-slate-700 dark:text-slate-200" <> " " <> labelClass
                 label = unless (disableLabel || null fieldLabel) [hsx|<label class={twLabelClass} for={fieldInputId}>{fieldLabel}</label>|]
                 inputClass = (styledInputClass cssFramework formField, True)
                 inputInvalidClass = styledInputInvalidClass cssFramework formField
@@ -144,7 +144,7 @@ customTailwind = def
                 >{fieldValue}</textarea>{validationResult}{helpText}
             |]
             where
-                twLabelClass = classes ["font-medium text-gray-700", (labelClass, not (null labelClass))]
+                twLabelClass = classes ["font-medium text-slate-700 dark:text-slate-200", (labelClass, not (null labelClass))]
                 label = unless (disableLabel || null fieldLabel) [hsx|<label class={twLabelClass} for={fieldInputId}>{fieldLabel}</label>|]
                 inputClass = (styledInputClass cssFramework formField, True)
                 inputInvalidClass = styledInputInvalidClass cssFramework formField
@@ -173,7 +173,7 @@ customTailwind = def
                 {helpText}
             |]
             where
-                twLabelClass = "font-medium text-gray-700" <> " " <> labelClass
+                twLabelClass = "font-medium text-slate-700 dark: text-slate-200" <> " " <> labelClass
                 label = unless disableLabel [hsx|<label class={twLabelClass} for={fieldInputId}>{fieldLabel}</label>|]
                 inputClass = (styledInputClass cssFramework formField, True)
                 inputInvalidClass = styledInputInvalidClass cssFramework formField
@@ -189,13 +189,13 @@ customTailwind = def
                 |]
 
 
-        styledInputClass _ FormField {} = "focus:ring-blue-500 focus:border-blue-500 block w-full border-gray-300 rounded-md"
+        styledInputClass _ FormField {} = "focus:ring-teal-500 focus:border-teal-500 block w-full border-slate-300 rounded-md"
         styledInputInvalidClass _ _ = "is-invalid"
 
-        styledSubmitButtonClass = "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        styledSubmitButtonClass = "bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
 
         styledFormFieldHelp _ FormField { helpText = "" } = mempty
-        styledFormFieldHelp _ FormField { helpText } = [hsx|<p class="text-gray-600 text-xs italic">{helpText}</p>|]
+        styledFormFieldHelp _ FormField { helpText } = [hsx|<p class="text-slate-600 text-xs italic">{helpText}</p>|]
 
         styledFormGroupClass = "flex flex-col my-6 space-y-2"
 
@@ -209,7 +209,7 @@ customTailwind = def
                 previousPageUrl = if hasPreviousPage pagination then pageUrl $ currentPage - 1 else "#"
                 nextPageUrl = if hasNextPage pagination then pageUrl $ currentPage + 1 else "#"
 
-                defaultClass = "relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                defaultClass = "relative inline-flex items-center px-4 py-2 border border-slate-300 text-sm font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50"
                 previousClass = classes
                     [ defaultClass
                     , ("disabled", not $ hasPreviousPage pagination)
@@ -235,13 +235,13 @@ customTailwind = def
 
             in
             [hsx|
-                <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-slate-200 sm:px-6">
                     <div class="flex-1 flex justify-between sm:hidden">
                         {previousMobileOnly}
                         {nextMobileOnly}
                     </div>
                     <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-                        <div class="text-sm text-gray-700">
+                        <div class="text-sm text-slate-700 dark:text-slate-200">
                             <select class="px-4 py-3" id="maxItemsSelect" onchange="window.location.href = this.options[this.selectedIndex].dataset.url">
                                 {paginationView.itemsPerPageSelector}
                             </select>
@@ -263,7 +263,7 @@ customTailwind = def
         styledPaginationLinkPrevious _ pagination@Pagination {currentPage} pageUrl =
             let
                 prevClass = classes
-                    [ "relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                    [ "relative inline-flex items-center px-2 py-2 rounded-l-md border border-slate-300 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50"
                     , ("disabled", not $ hasPreviousPage pagination)
                     ]
 
@@ -284,7 +284,7 @@ customTailwind = def
         styledPaginationLinkNext _ pagination@Pagination {currentPage} pageUrl =
             let
                 nextClass = classes
-                    [ "relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                    [ "relative inline-flex items-center px-2 py-2 rounded-r-md border border-slate-300 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50"
                     , ("disabled", not $ hasNextPage pagination)
                     ]
 
@@ -307,9 +307,9 @@ customTailwind = def
                 linkClass = classes
                     [ "relative inline-flex items-center px-4 py-2 border text-sm font-medium"
                     -- Current page
-                    , ("z-10 bg-blue-50 border-blue-500 text-blue-600", pageNumber == currentPage)
+                    , ("z-10 bg-teal-50 border-teal-500 text-teal-600", pageNumber == currentPage)
                     -- Not current page
-                    , ("bg-white border-gray-300 text-gray-500 hover:bg-gray-50", pageNumber /= currentPage)
+                    , ("bg-white border-slate-300 text-slate-500 hover:bg-slate-50", pageNumber /= currentPage)
                     ]
             in
                 [hsx|
@@ -322,7 +322,7 @@ customTailwind = def
         styledPaginationDotDot :: CSSFramework -> Pagination -> Blaze.Html
         styledPaginationDotDot _ _ =
             [hsx|
-                <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+                <span class="relative inline-flex items-center px-4 py-2 border border-slate-300 bg-white text-sm font-medium text-slate-700 dark:text-slate-200">
                     ...
                 </span>
         |]
@@ -350,12 +350,12 @@ customTailwind = def
         styledBreadcrumbItem :: CSSFramework -> [ BreadcrumbItem ]-> BreadcrumbItem -> Bool -> Blaze.Html
         styledBreadcrumbItem _ breadcrumbItems breadcrumbItem@BreadcrumbItem {breadcrumbLabel, url} isLast =
             let
-                breadcrumbsClasses = classes ["flex flex-row space-x-2 text-gray-600 items-center", ("active", isLast)]
+                breadcrumbsClasses = classes ["flex flex-row space-x-2 text-slate-600 items-center", ("active", isLast)]
 
                 -- Show chevron if item isn't the active one (i.e. the last one).
                 chevronRight = unless isLast [hsx|
                 <!-- heroicons.com chevron-right -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 h-4 w-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
                 |]
@@ -369,7 +369,7 @@ customTailwind = def
                 |]
                 Just url -> [hsx|
                     <li class={breadcrumbsClasses}>
-                        <a class="hover:text-gray-700" href={url}>{breadcrumbLabel}</a>
+                        <a class="hover:text-slate-700" href={url}>{breadcrumbLabel}</a>
                         {chevronRight}
                     </li>
                     |]

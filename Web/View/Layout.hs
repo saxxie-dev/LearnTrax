@@ -18,13 +18,13 @@ defaultLayout inner = H.docTypeHtml ! A.lang "en" $ [hsx|
     {stylesheets}
     {scripts}
 
-    <title>{pageTitleOrDefault "App"}</title>
+    <title>{pageTitleOrDefault "LearnTracks"}</title>
 </head>
-<body>
-    <div class="container mt-4">
-        {renderFlashMessages}
-        {inner}
-    </div>
+<body class="flex flex-col dark:bg-slate-900 bg-slate-100 text-slate-800 dark:text-slate-100 h-[100vh]">
+    {header}
+    {renderFlashMessages}
+    {inner}
+    {modal}
 </body>
 |]
 
@@ -68,3 +68,13 @@ metaTags = [hsx|
     <meta property="og:description" content="TODO"/>
     {autoRefreshMeta}
 |]
+
+header :: Html
+header = [hsx|
+    <header class="p-2 border-0 dark:bg-slate-700 bg-slate-300 h-12 flex items-center border-b border-slate-600 justify-between dark:text-teal-200 text-teal-800">
+        <span class="text-xl"><a href={WelcomeAction}>LearnTracks</a></span>
+        {logout}
+    </header>
+|] where logout = case currentUserOrNothing of 
+                    Nothing -> [hsx||] 
+                    (Just user) -> [hsx|<a href={DeleteSessionAction} class="js-delete text-slate-600 dark:text-slate-400 hover:underline">Logout</a>|]
