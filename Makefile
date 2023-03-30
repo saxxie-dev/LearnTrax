@@ -29,8 +29,8 @@ include ${IHP}/Makefile.dist
 tailwind-dev:
 	node_modules/.bin/tailwind -c tailwind/tailwind.config.js -i ./tailwind/app.css -o static/app.css --watch
 
+static/app.css: node_modules
+	NODE_ENV=production node_modules/.bin/tailwind -c tailwind/tailwind.config.js -i ./tailwind/app.css -o static/app.css --minify
+
 node_modules:
 	NODE_ENV=production npm ci
-
-static/app.css:
-	NODE_ENV=production node_modules/.bin/tailwind -c tailwind/tailwind.config.js -i ./tailwind/app.css -o static/app.css --minify
