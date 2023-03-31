@@ -6,7 +6,7 @@
     nix-npm-buildpackage = { url = "github:serokell/nix-npm-buildpackage"; };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable } @attrs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nix-npm-buildpackage } @attrs:
     let
       system = "x86_64-linux";
       overlay-unstable = final: prev: {
