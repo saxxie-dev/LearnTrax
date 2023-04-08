@@ -47,7 +47,7 @@ outputs = { self, nixpkgs, nixpkgs-unstable, nix-npm-buildpackage } @attrs:
         );
     in
     {
-      nixosConfigurations."ihp-npm-shipnix" = nixpkgs.lib.nixosSystem {
+      nixosConfigurations."LearnTrax" = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = attrs // {
           environment = "production";
